@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="myStyle.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+        <style>
+            .slideshow{
+                display:flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .sscontrol{
+                font-size: 100px;
+                font-weight: bold;
+                font-family: monospace;
+            }
+            .sslist{
+                list-style-type: none;
+                padding: 40px;
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <a href="home.html">Home</a></li>
+                <li class="dropdown"><a href="history.html">History</a>
+                    <ul>
+                        <li>
+                            <a href="history.html#hellenistic">Hellenistic Era</a>
+                        </li>
+                        <li>
+                            <a href="history.html#byzantine">Byzantine Era</a>
+                        </li>
+                        <li>
+                            <a href="history.html#ottoman">Ottoman Era</a>
+                        </li>
+                        <li>
+                            <a href="history.html#modern">Modern Era</a>
+                        </li>
+                    </ul>
+                </li>
+                <li><em>Places</em></li>
+                <li><a href="photos.html">Photos</a></li>
+                <li><a href="references.html">References</a></li>
+            </ul>
+        </nav>
+        <section>
+            <h1>Monuments</h1>
+
+            <p>
+                Among the numerous monuments of particular interest in the city are those from the Roman period, the Triumphal <a href="photos/ArchAndRotonda.jpg">Arch of Galerius and the Rotonda</a>. Thessaloniki is, however, above all famous for its Byzantine period, being second only to Constantinople itself. Its many churches whose fine mosaics and wall-paintings are representative of various periods of Byzantine art have survive to enhance the image of the city. One of the most beautiful church is that of <a href="photos/AgSofia.jpg">Agia Sofia</a>. Large sections of the <a href="photos/Walls.jpg">city-walls</a> are also still standing, together with one of their main bastions, the well-known <a href="photos/WhiteTower.jpg">White Tower</a>.
+            </p>
+
+            <h2>Other places to visit</h2>
+
+            <p>
+                For a combination of shopping and sightseeing we recomment you visit the <a href="photos/Ladadika.jpg">Ladadika</a> area. In addition you may enjoy a walk on the famous <a href="photos/AristotelouSq.jpg">Aristotelous str</a>.
+            </p>
+            <p>
+                For a more cultural outing try to book a seat at the <a href="photos/ConcertHall.jpg">Concert Hall</a>, or if it is Early September that you visit the city, visit the <a href="photos/Helexpo.jpg">Helexpo</a>.
+            </p>
+            <div class="slideshow">
+                <a class="sscontrol" id="previous">&lt;</a>
+                <ul class="sslist">
+                    <li class="ssitem">
+                        <h1>
+                            Agia Sofia
+                        </h1>
+                        <img src="photos/AgSofia.jpg">
+                    </li>
+                    <li class="ssitem">
+                        <h1>
+                            Arch And Rotonda
+                        </h1>
+                        <img src="photos/ArchAndRotonda.jpg">
+                    </li>
+                    <li class="ssitem">
+                        <h1>
+                            Aristotelous Square
+                        </h1>
+                        <img src="photos/AristotelouSq.jpg">
+                    </li>
+                    <li class="ssitem">
+                        <h1>
+                            ConcertHall
+                        </h1>
+                        <img src="photos/ConcertHall.jpg">
+                    </li>
+                    <li class="ssitem">
+                        <h1>
+                            Helexpo
+                        </h1>
+                        <img src="photos/Helexpo.jpg">
+                    </li>
+                    <li class="ssitem">
+                        <h1>
+                            Ladadika
+                        </h1>
+                        <img src="photos/Ladadika.jpg">
+                    </li>
+                    <li class="ssitem">
+                        <h1>
+                            Rotonda
+                        </h1>
+                        <img src="photos/rotonda.jpg">
+                    </li>
+                    <li class="ssitem">
+                        <h1>
+                            Walls
+                        </h1>
+                        <img src="photos/Walls.jpg">
+                    </li>
+                    <li class="ssitem">
+                        <h1>
+                            White Tower
+                        </h1>
+                        <img src="photos/WhiteTower.jpg">
+                    </li>
+
+                </ul>
+                <a class="sscontrol" id="next">&gt;</a>
+            </div>
+        </section>
+        
+        <footer>
+            <p>Created by I2WT group B, last update 16/1/26</p>
+        </footer>
+
+        <script>
+            //Step 1: get the elements
+            const ssitemEls = document.getElementsByClassName("ssitem");
+            let showItem = 0;
+            for(let i=0; i<ssitemEls.length; i++){
+                ssitemEls[i].style.display="none";
+            }
+            ssitemEls[showItem].style.display="block";
+            //Step2: define the behaviour with a function
+            const nextImage = function(){
+                ssitemEls[showItem].style.display="none";
+                showItem++;
+                if(showItem >= ssitemEls.length){
+                    showItem = 0;
+                }
+                ssitemEls[showItem].style.display="block";
+            }
+            //Step3: get the element with the behaviour and add the event
+            const nextEl = document.getElementById("next");
+            nextEl.addEventListener("click", nextImage);
+
+            //Step 4: do the previous.. (repeat steps 2 and 3)
+            const previousImage = function(){
+                ssitemEls[showItem].style.display="none";
+                showItem--;
+                if(showItem < 0){
+                    showItem = ssitemEls.length-1;
+                }
+                ssitemEls[showItem].style.display="block";
+            }
+            const previousEl = document.getElementById("previous");
+            previousEl.addEventListener("click", previousImage);
+            
+        </script>
+        
+
+        
+    </body>
+</html>
